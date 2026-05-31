@@ -1,0 +1,14 @@
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        prev2 = 1
+        prev = 2
+        if n == 1:
+            return prev2
+        elif n == 2:
+            return prev
+        else:
+            for i in range(3,n+1):
+                curr = prev + prev2
+                prev2 = prev
+                prev = curr 
+            return curr
