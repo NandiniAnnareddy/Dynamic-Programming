@@ -1,0 +1,20 @@
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        mini = float("inf")
+        left = [0]*len(prices)
+        profit = 0
+        for i in range(0,len(prices)):
+            mini = min(mini,prices[i])
+            profit = max(profit,prices[i]-mini)
+            left[i] = profit
+        maxi = float("-inf")
+        right = [0]*len(prices)
+        profit = 0
+        for i in range(len(prices)-1,-1,-1):
+            maxi = max(maxi,prices[i])
+            profit = max(profit,maxi-prices[i])
+            right[i] = profit
+        total = []
+        for i in range(0,len(prices)):
+            total.append(left[i]+right[i])
+        return max(total)
